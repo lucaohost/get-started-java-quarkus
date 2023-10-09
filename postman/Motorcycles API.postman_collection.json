@@ -1,0 +1,121 @@
+{
+	"info": {
+		"_postman_id": "8e91f339-065a-49e5-8e49-f2324ab7e6fa",
+		"name": "Motorcycles API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30350682"
+	},
+	"item": [
+		{
+			"name": "motorcycle",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/motorcycles",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"motorcycles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "motorycle",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 6,\r\n    \"brand\": \"BMW\",\r\n    \"model\": \"S1000RR\",\r\n    \"year\": 2023,\r\n    \"cv\": 205,\r\n    \"torque\": \"113 Nm\",\r\n    \"additionalInfo\": \"Superbike with advanced electronics and performance.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/motorcycles/6",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"motorcycles",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "motorcycle by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/motorcycles/6",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"motorcycles",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "motorycle",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/motorcycles/6",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"motorcycles",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "motorycle",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"brand\": \"BMW\",\r\n    \"model\": \"S1000RR\",\r\n    \"year\": 2023,\r\n    \"cv\": 205,\r\n    \"torque\": \"113 Nm\",\r\n    \"additionalInfo\": \"Superbike with advanced electronics and performance.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/motorcycles",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"motorcycles"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
