@@ -2,6 +2,7 @@ package org.motorcycles;
 
 import com.google.gson.Gson;
 import io.quarkus.test.junit.QuarkusTest;
+import jakarta.inject.Inject;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
