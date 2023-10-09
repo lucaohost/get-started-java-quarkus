@@ -1,4 +1,4 @@
-package org.acme;
+package org.motorcycles;
 
 public class Motorcycle {
 
