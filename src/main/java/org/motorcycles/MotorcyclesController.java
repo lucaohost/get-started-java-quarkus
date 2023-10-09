@@ -1,4 +1,4 @@
-package org.acme;
+package org.motorcycles;
 
 import com.google.gson.Gson;
 import jakarta.ws.rs.GET;
@@ -34,7 +34,7 @@ public class MotorcyclesController {
         return gson.toJson(this.motorcyclesList.get(id));
     }
 
-    private void populate() {
+    public void populate() {
         this.motorcyclesList.put(1L, new Motorcycle(1L, "Harley-Davidson", "Sportster Iron 883", 2022, 53, "68 Nm", "Cruiser-style motorcycle with a classic look."));
         this.motorcyclesList.put(2L, new Motorcycle(2L, "Honda", "CBR600RR", 2021, 120, "66 Nm", "Sportbike known for its performance and agility."));
         this.motorcyclesList.put(3L, new Motorcycle(3L, "Ducati", "Panigale V4", 2023, 214, "124 Nm", "High-performance sportbike with cutting-edge technology."));
@@ -43,4 +43,7 @@ public class MotorcyclesController {
         this.motorcyclesList.put(6L, new Motorcycle(6L, "BMW", "S1000RR", 2023, 205, "113 Nm", "Superbike with advanced electronics and performance."));
     }
 
+    public Map<Long, Motorcycle> getMotorcyclesList() {
+        return motorcyclesList;
+    }
 }
