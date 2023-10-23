@@ -7,7 +7,7 @@ import jakarta.transaction.Transactional;
 import org.motorcycles.model.Motorcycle;
 
 @ApplicationScoped
-public class MotorcycleRepositoryImpl implements MotorcycleRepository {
+public class MotorcyclesRepositoryImpl implements MotorcyclesRepository {
 
     @Inject
     private EntityManager em;

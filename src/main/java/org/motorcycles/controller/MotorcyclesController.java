@@ -11,7 +11,7 @@ import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import org.motorcycles.model.Motorcycle;
-import org.motorcycles.service.MotorcycleService;
+import org.motorcycles.service.MotorcyclesService;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,10 +25,10 @@ public class MotorcyclesController {
     private final Gson gson = new Gson();
 
     @Inject
-    private final MotorcycleService motorcycleService;
+    private final MotorcyclesService motorcyclesService;
 
-    public MotorcyclesController(MotorcycleService motorcycleService) {
-        this.motorcycleService = motorcycleService;
+    public MotorcyclesController(MotorcyclesService motorcyclesService) {
+        this.motorcyclesService = motorcyclesService;
         this.populate();
     }
 
@@ -57,7 +57,7 @@ public class MotorcyclesController {
     @POST
     public String createMotorcycle(String newMotorcycleJson) {
         Motorcycle newMotorcycle = gson.fromJson(newMotorcycleJson, Motorcycle.class);
-        motorcycleService.saveMotorcycle(newMotorcycle);
+        motorcyclesService.saveMotorcycle(newMotorcycle);
         return gson.toJson(newMotorcycle);
     }
 
