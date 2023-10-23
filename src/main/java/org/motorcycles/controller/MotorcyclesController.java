@@ -1,7 +1,8 @@
-package org.motorcycles;
+package org.motorcycles.controller;
 
 import com.google.gson.Gson;
-import jakarta.ws.rs.Consumes;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.NotFoundException;
@@ -9,39 +10,41 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
-import jakarta.ws.rs.Produces;
-import jakarta.ws.rs.core.MediaType;
+import org.motorcycles.model.Motorcycle;
+import org.motorcycles.service.MotorcyclesService;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Path("/motorcycles")
+@RequestScoped
 public class MotorcyclesController {
 
     private final Map<Long, Motorcycle> motorcyclesList = new HashMap<>();
 
     private final Gson gson = new Gson();
 
-    public MotorcyclesController() {
+    @Inject
+    private final MotorcyclesService motorcyclesService;
+
+    public MotorcyclesController(MotorcyclesService motorcyclesService) {
+        this.motorcyclesService = motorcyclesService;
         this.populate();
     }
 
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
     public String getAllMotorcycles() {
         return gson.toJson(this.motorcyclesList);
     }
 
     @GET
     @Path("/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
     public String getMotorcycleById(@PathParam("id") Long id) {
         return gson.toJson(this.motorcyclesList.get(id));
     }
 
     @DELETE
     @Path("/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
     public String deleteMotorcycle(@PathParam("id") Long id) {
         if (motorcyclesList.containsKey(id)) {
             Motorcycle deletedMotorcycle = motorcyclesList.remove(id);
@@ -50,22 +53,16 @@ public class MotorcyclesController {
             throw new NotFoundException("Motorcycle with ID " + id + " not found");
         }
     }
-
+//
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
     public String createMotorcycle(String newMotorcycleJson) {
         Motorcycle newMotorcycle = gson.fromJson(newMotorcycleJson, Motorcycle.class);
-        Long newId = generateUniqueId();
-        newMotorcycle.setId(newId);
-        motorcyclesList.put(newId, newMotorcycle);
+        motorcyclesService.saveMotorcycle(newMotorcycle);
         return gson.toJson(newMotorcycle);
     }
 
     @PUT
     @Path("/{id}")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
     public String updateMotorcycle(@PathParam("id") Long id, String updatedMotorcycleJson) {
         Motorcycle updatedMotorcycle = gson.fromJson(updatedMotorcycleJson, Motorcycle.class);
         if (motorcyclesList.containsKey(id)) {

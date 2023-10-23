@@ -1,7 +1,12 @@
-package org.motorcycles;
+package org.motorcycles.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Motorcycle {
 
+    @Id
     private Long id;
     private String brand;
     private String model;
@@ -9,6 +14,9 @@ public class Motorcycle {
     private int cv; // Horsepower
     private String torque;
     private String additionalInfo;
+
+    public Motorcycle() {
+    }
 
     public Motorcycle(Long id, String brand, String model, int year, int cv, String torque, String additionalInfo) {
         this.id = id;
