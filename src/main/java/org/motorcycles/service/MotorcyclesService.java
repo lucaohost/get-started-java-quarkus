@@ -4,11 +4,15 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import org.motorcycles.model.Motorcycle;
 import org.motorcycles.repository.MotorcyclesRepository;
+
+import java.util.ArrayList;
+import java.util.List;
+
 @ApplicationScoped
 public class MotorcyclesService {
 
     @Inject
-    private final MotorcyclesRepository motorcyclesRepository;
+    private MotorcyclesRepository motorcyclesRepository;
 
     public MotorcyclesService(MotorcyclesRepository motorcyclesRepository) {
         this.motorcyclesRepository = motorcyclesRepository;
@@ -16,6 +20,14 @@ public class MotorcyclesService {
 
     public Motorcycle saveMotorcycle(Motorcycle motorcycle) {
         return motorcyclesRepository.saveMotorcycle(motorcycle);
+    }
+
+    public List<Motorcycle> getAll() {
+        return motorcyclesRepository.getAll();
+    }
+
+    public Motorcycle getById(Long id) {
+        return motorcyclesRepository.getById(id);
     }
 
 }

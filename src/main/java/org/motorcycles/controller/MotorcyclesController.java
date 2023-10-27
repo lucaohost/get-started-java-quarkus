@@ -10,9 +10,12 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
 import org.motorcycles.model.Motorcycle;
 import org.motorcycles.service.MotorcyclesService;
 
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,7 +28,7 @@ public class MotorcyclesController {
     private final Gson gson = new Gson();
 
     @Inject
-    private final MotorcyclesService motorcyclesService;
+    private MotorcyclesService motorcyclesService;
 
     public MotorcyclesController(MotorcyclesService motorcyclesService) {
         this.motorcyclesService = motorcyclesService;
@@ -33,14 +36,16 @@ public class MotorcyclesController {
     }
 
     @GET
+    @Produces(MediaType.APPLICATION_JSON)
     public String getAllMotorcycles() {
-        return gson.toJson(this.motorcyclesList);
+        return gson.toJson(motorcyclesService.getAll());
     }
 
     @GET
     @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
     public String getMotorcycleById(@PathParam("id") Long id) {
-        return gson.toJson(this.motorcyclesList.get(id));
+        return gson.toJson(motorcyclesService.getById(id));
     }
 
     @DELETE
@@ -55,6 +60,7 @@ public class MotorcyclesController {
     }
 //
     @POST
+    @Produces(MediaType.APPLICATION_JSON)
     public String createMotorcycle(String newMotorcycleJson) {
         Motorcycle newMotorcycle = gson.fromJson(newMotorcycleJson, Motorcycle.class);
         motorcyclesService.saveMotorcycle(newMotorcycle);
