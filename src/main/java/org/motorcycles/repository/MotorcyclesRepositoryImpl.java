@@ -29,4 +29,9 @@ public class MotorcyclesRepositoryImpl implements MotorcyclesRepository {
         return query.getResultList();
     }
 
+    @Override
+    public Motorcycle getById(Long id) {
+        return em.find(Motorcycle.class, id);
+    }
+
 }

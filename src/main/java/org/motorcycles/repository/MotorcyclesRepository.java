@@ -11,4 +11,6 @@ public interface MotorcyclesRepository {
 
     public List<Motorcycle> getAll();
 
+    public Motorcycle getById(Long id);
+
 }

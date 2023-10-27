@@ -26,4 +26,8 @@ public class MotorcyclesService {
         return motorcyclesRepository.getAll();
     }
 
+    public Motorcycle getById(Long id) {
+        return motorcyclesRepository.getById(id);
+    }
+
 }
