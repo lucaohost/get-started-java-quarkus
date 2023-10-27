@@ -25,7 +25,7 @@ public class MotorcyclesController {
     private final Gson gson = new Gson();
 
     @Inject
-    private final MotorcyclesService motorcyclesService;
+    private MotorcyclesService motorcyclesService;
 
     public MotorcyclesController(MotorcyclesService motorcyclesService) {
         this.motorcyclesService = motorcyclesService;
@@ -34,7 +34,7 @@ public class MotorcyclesController {
 
     @GET
     public String getAllMotorcycles() {
-        return gson.toJson(this.motorcyclesList);
+        return gson.toJson(motorcyclesService.getAll());
     }
 
     @GET
