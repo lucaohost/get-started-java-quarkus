@@ -5,7 +5,6 @@ import jakarta.inject.Inject;
 import org.motorcycles.model.Motorcycle;
 import org.motorcycles.repository.MotorcyclesRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @ApplicationScoped
@@ -18,8 +17,8 @@ public class MotorcyclesService {
         this.motorcyclesRepository = motorcyclesRepository;
     }
 
-    public Motorcycle saveMotorcycle(Motorcycle motorcycle) {
-        return motorcyclesRepository.saveMotorcycle(motorcycle);
+    public Motorcycle save(Motorcycle motorcycle) {
+        return motorcyclesRepository.save(motorcycle);
     }
 
     public List<Motorcycle> getAll() {
@@ -27,12 +26,13 @@ public class MotorcyclesService {
     }
 
     public Motorcycle getById(Long id) {
-        return motorcyclesRepository.getById(id);
+        return motorcyclesRepository.get(id);
     }
 
-    public Motorcycle updateMotorcycle(Long id, Motorcycle motorcycle) {
+    public Motorcycle update(Long id, Motorcycle motorcycle) {
         return motorcyclesRepository.updateMotorcycle(id, motorcycle);
     }
 
-
+    public void delete() {
+    }
 }

@@ -18,7 +18,7 @@ public class MotorcyclesRepositoryImpl implements MotorcyclesRepository {
 
     @Override
     @Transactional
-    public Motorcycle saveMotorcycle(Motorcycle motorcycle) {
+    public Motorcycle save(Motorcycle motorcycle) {
         em.persist(motorcycle);
         return motorcycle;
     }
@@ -46,7 +46,7 @@ public class MotorcyclesRepositoryImpl implements MotorcyclesRepository {
     }
 
     @Override
-    public Motorcycle getById(Long id) {
+    public Motorcycle get(Long id) {
         return em.find(Motorcycle.class, id);
     }
 

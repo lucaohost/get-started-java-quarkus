@@ -5,7 +5,6 @@ import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
-import jakarta.ws.rs.NotFoundException;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
@@ -15,7 +14,6 @@ import jakarta.ws.rs.core.MediaType;
 import org.motorcycles.model.Motorcycle;
 import org.motorcycles.service.MotorcyclesService;
 
-import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -51,26 +49,21 @@ public class MotorcyclesController {
     @DELETE
     @Path("/{id}")
     public String deleteMotorcycle(@PathParam("id") Long id) {
-        if (motorcyclesList.containsKey(id)) {
-            Motorcycle deletedMotorcycle = motorcyclesList.remove(id);
-            return gson.toJson(deletedMotorcycle);
-        } else {
-            throw new NotFoundException("Motorcycle with ID " + id + " not found");
-        }
+        motorcyclesService.delete();
+
     }
-//
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     public String createMotorcycle(String newMotorcycleJson) {
         Motorcycle newMotorcycle = getFromJson(newMotorcycleJson);
-        motorcyclesService.saveMotorcycle(newMotorcycle);
+        motorcyclesService.save(newMotorcycle);
         return gson.toJson(newMotorcycle);
     }
 
     @PUT
     @Path("/{id}")
     public String updateMotorcycle(@PathParam("id") Long id, String updatedMotorcycleJson) {
-        Motorcycle updatedMotorcycle = motorcyclesService.updateMotorcycle(id, getFromJson(updatedMotorcycleJson));
+        Motorcycle updatedMotorcycle = motorcyclesService.update(id, getFromJson(updatedMotorcycleJson));
         return gson.toJson(updatedMotorcycle);
     }
 
