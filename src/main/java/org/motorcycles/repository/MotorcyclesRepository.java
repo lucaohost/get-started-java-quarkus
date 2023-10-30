@@ -8,7 +8,7 @@ public interface MotorcyclesRepository {
 
     public Motorcycle save(Motorcycle motorcycle);
 
-    public Motorcycle updateMotorcycle(Long id, Motorcycle motorcycle);
+    public Motorcycle update(Long id, Motorcycle motorcycle);
 
     public List<Motorcycle> getAll();
 

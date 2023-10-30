@@ -24,7 +24,7 @@ public class MotorcyclesRepositoryImpl implements MotorcyclesRepository {
 
     @Override
     @Transactional
-    public Motorcycle updateMotorcycle(Long id, Motorcycle updatedMotorcycle) {
+    public Motorcycle update(Long id, Motorcycle updatedMotorcycle) {
         Motorcycle motorcycle = em.find(Motorcycle.class, id);
         if (motorcycle != null) {
             motorcycle.setCv(updatedMotorcycle.getCv());

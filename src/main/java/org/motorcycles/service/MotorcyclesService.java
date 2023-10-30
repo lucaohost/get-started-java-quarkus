@@ -30,7 +30,7 @@ public class MotorcyclesService {
     }
 
     public Motorcycle update(Long id, Motorcycle motorcycle) {
-        return motorcyclesRepository.updateMotorcycle(id, motorcycle);
+        return motorcyclesRepository.update(id, motorcycle);
     }
 
     public void delete(Long id) {
