@@ -30,4 +30,9 @@ public class MotorcyclesService {
         return motorcyclesRepository.getById(id);
     }
 
+    public Motorcycle updateMotorcycle(Long id, Motorcycle motorcycle) {
+        return motorcyclesRepository.updateMotorcycle(id, motorcycle);
+    }
+
+
 }

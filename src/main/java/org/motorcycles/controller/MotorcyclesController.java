@@ -62,7 +62,7 @@ public class MotorcyclesController {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     public String createMotorcycle(String newMotorcycleJson) {
-        Motorcycle newMotorcycle = gson.fromJson(newMotorcycleJson, Motorcycle.class);
+        Motorcycle newMotorcycle = getFromJson(newMotorcycleJson);
         motorcyclesService.saveMotorcycle(newMotorcycle);
         return gson.toJson(newMotorcycle);
     }
@@ -70,13 +70,12 @@ public class MotorcyclesController {
     @PUT
     @Path("/{id}")
     public String updateMotorcycle(@PathParam("id") Long id, String updatedMotorcycleJson) {
-        Motorcycle updatedMotorcycle = gson.fromJson(updatedMotorcycleJson, Motorcycle.class);
-        if (motorcyclesList.containsKey(id)) {
-            motorcyclesList.put(id, updatedMotorcycle);
-            return gson.toJson(updatedMotorcycle);
-        } else {
-            throw new NotFoundException("Motorcycle with ID " + id + " not found");
-        }
+        Motorcycle updatedMotorcycle = motorcyclesService.updateMotorcycle(id, getFromJson(updatedMotorcycleJson));
+        return gson.toJson(updatedMotorcycle);
+    }
+
+    private Motorcycle getFromJson(String updatedMotorcycleJson) {
+        return gson.fromJson(updatedMotorcycleJson, Motorcycle.class);
     }
 
 

@@ -9,6 +9,8 @@ public interface MotorcyclesRepository {
 
     public Motorcycle saveMotorcycle(Motorcycle motorcycle);
 
+    public Motorcycle updateMotorcycle(Long id, Motorcycle motorcycle);
+
     public List<Motorcycle> getAll();
 
     public Motorcycle getById(Long id);
