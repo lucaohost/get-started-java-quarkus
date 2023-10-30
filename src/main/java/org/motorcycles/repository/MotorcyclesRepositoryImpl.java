@@ -7,7 +7,6 @@ import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import org.motorcycles.model.Motorcycle;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @ApplicationScoped
@@ -18,8 +17,24 @@ public class MotorcyclesRepositoryImpl implements MotorcyclesRepository {
 
     @Override
     @Transactional
-    public Motorcycle saveMotorcycle(Motorcycle motorcycle) {
+    public Motorcycle save(Motorcycle motorcycle) {
         em.persist(motorcycle);
+        return motorcycle;
+    }
+
+    @Override
+    @Transactional
+    public Motorcycle update(Long id, Motorcycle updatedMotorcycle) {
+        Motorcycle motorcycle = em.find(Motorcycle.class, id);
+        if (motorcycle != null) {
+            motorcycle.setCv(updatedMotorcycle.getCv());
+            motorcycle.setYear(updatedMotorcycle.getYear());
+            motorcycle.setTorque(updatedMotorcycle.getTorque());
+            motorcycle.setModel(updatedMotorcycle.getModel());
+            motorcycle.setBrand(updatedMotorcycle.getBrand());
+            motorcycle.setAdditionalInfo(updatedMotorcycle.getAdditionalInfo());
+            em.merge(motorcycle);
+        }
         return motorcycle;
     }
 
@@ -30,8 +45,17 @@ public class MotorcyclesRepositoryImpl implements MotorcyclesRepository {
     }
 
     @Override
-    public Motorcycle getById(Long id) {
+    public Motorcycle get(Long id) {
         return em.find(Motorcycle.class, id);
+    }
+
+    @Override
+    @Transactional
+    public void delete(Long id) {
+        Motorcycle motorcycle = em.find(Motorcycle.class, id);
+        if (motorcycle != null) {
+            em.remove(motorcycle);
+        }
     }
 
 }
