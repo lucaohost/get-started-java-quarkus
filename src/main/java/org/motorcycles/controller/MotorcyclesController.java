@@ -11,6 +11,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 import org.motorcycles.model.Motorcycle;
 import org.motorcycles.service.MotorcyclesService;
 
@@ -48,9 +49,10 @@ public class MotorcyclesController {
 
     @DELETE
     @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
     public String deleteMotorcycle(@PathParam("id") Long id) {
-        motorcyclesService.delete();
-
+        motorcyclesService.delete(id);
+        return gson.toJson(Response.ok("success").build());
     }
     @POST
     @Produces(MediaType.APPLICATION_JSON)

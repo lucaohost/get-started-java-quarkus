@@ -7,7 +7,6 @@ import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import org.motorcycles.model.Motorcycle;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @ApplicationScoped
@@ -48,6 +47,15 @@ public class MotorcyclesRepositoryImpl implements MotorcyclesRepository {
     @Override
     public Motorcycle get(Long id) {
         return em.find(Motorcycle.class, id);
+    }
+
+    @Override
+    @Transactional
+    public void delete(Long id) {
+        Motorcycle motorcycle = em.find(Motorcycle.class, id);
+        if (motorcycle != null) {
+            em.remove(motorcycle);
+        }
     }
 
 }

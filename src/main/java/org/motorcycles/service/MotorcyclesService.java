@@ -33,6 +33,8 @@ public class MotorcyclesService {
         return motorcyclesRepository.updateMotorcycle(id, motorcycle);
     }
 
-    public void delete() {
+    public void delete(Long id) {
+        motorcyclesRepository.delete(id);
+
     }
 }
