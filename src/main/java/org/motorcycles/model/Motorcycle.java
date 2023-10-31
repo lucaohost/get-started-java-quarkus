@@ -9,10 +9,8 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table
-@NamedQuery(
-        name = "Motorcycle.findAll",
-        query = "SELECT m FROM Motorcycle m"
-)
+@NamedQuery(name = "Motorcycle.findAll", query = "SELECT m FROM Motorcycle m")
+@NamedQuery(name = "Motorcycle.count", query = "SELECT COUNT(m) FROM Motorcycle m")
 public class Motorcycle {
 
     @Id

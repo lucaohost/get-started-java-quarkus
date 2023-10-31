@@ -3,6 +3,7 @@ package org.motorcycles.repository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import org.motorcycles.model.Motorcycle;
@@ -56,6 +57,10 @@ public class MotorcyclesRepositoryImpl implements MotorcyclesRepository {
         if (motorcycle != null) {
             em.remove(motorcycle);
         }
+    }
+    public Long count() {
+        Query query = em.createNamedQuery("Motorcycle.count");
+        return (Long) query.getSingleResult();
     }
 
 }

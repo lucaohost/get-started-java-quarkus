@@ -14,5 +14,8 @@ public interface MotorcyclesRepository {
 
     public Motorcycle get(Long id);
 
-    void delete(Long id);
+    public void delete(Long id);
+
+    public Long count();
+
 }
