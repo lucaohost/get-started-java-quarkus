@@ -1,4 +1,4 @@
-# motorcycles-api-java-quarkus
+# Motorcycles API in Java Quarkus
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
